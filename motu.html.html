@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Motu 💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins', sans-serif;
+    background:linear-gradient(135deg,#ff9ad5,#c77dff);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    overflow:hidden;
+}
+
+/* Start Screen */
+#startScreen{
+    text-align:center;
+}
+
+button{
+    padding:18px 35px;
+    font-size:22px;
+    border:none;
+    border-radius:40px;
+    background:white;
+    color:#ff4da6;
+    cursor:pointer;
+    box-shadow:0 0 20px white;
+    animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+    100%{transform:scale(1);}
+}
+
+/* Main Content */
+#main{
+    display:none;
+    width:90%;
+    max-width:700px;
+}
+
+/* White Card */
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    text-align:center;
+    color:#333;
+    max-height:70vh;
+    overflow-y:auto;
+}
+
+.card h1{
+    color:#ff4da6;
+}
+
+#message{
+    margin-top:15px;
+    white-space:pre-line;
+    line-height:1.6;
+}
+
+/* Hearts */
+.heart{
+    position:absolute;
+    bottom:0;
+    animation:float 6s linear infinite;
+    color:white;
+}
+
+@keyframes float{
+    from{transform:translateY(0);}
+    to{transform:translateY(-100vh);}
+}
+
+/* Cake */
+#cake{
+    font-size:60px;
+    cursor:pointer;
+    margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="startScreen">
+    <button onclick="start()">Open for Motu 💖</button>
+</div>
+
+<div id="main">
+    <div class="card">
+        <h1>Happy Birthday, Motu 🎉❤️</h1>
+        <div id="message"></div>
+        <div id="cake" onclick="cutCake()">🎂</div>
+    </div>
+</div>
+
+<audio id="music" src="music.mp3"></audio>
+
+<script>
+
+let text = `Happy Birthday, Motu! 🎉❤️
+
+Wishing you the happiest birthday, Motu. Today is such a special day, and I honestly feel thankful to Uncle and Aunty for bringing such an amazing person into this world — my little “pumps” who means so much to me.
+
+Thank you for being a part of my life as such a supportive and caring sister. If I ever imagined having my own sister, I would want her to care for me, support me, love me, and even fight with me sometimes — just like you do. You’ve always been there, and that truly means a lot.
+
+I wish you a future that is brighter than ever, full of success, good health, and a long, beautiful life — even longer than mine. May you always stay happy and keep smiling the way you do.
+
+Once again, happy birthday. This is not just your birthday; it’s the beginning of another beautiful year of your life. A new chapter to grow, to dream bigger, and to achieve more. May God make this new year meaningful and fill it with endless joy and happiness.`;
+
+let i = 0;
+
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter,25);
+    }
+}
+
+function start(){
+    document.getElementById("startScreen").style.display="none";
+    document.getElementById("main").style.display="block";
+    document.getElementById("music").play();
+    typeWriter();
+    hearts();
+}
+
+function hearts(){
+    setInterval(()=>{
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="💖";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.fontSize=Math.random()*30+15+"px";
+        document.body.appendChild(heart);
+        setTimeout(()=>{heart.remove();},6000);
+    },500);
+}
+
+function cutCake(){
+    document.getElementById("cake").innerHTML="🍰";
+    alert("Make a wish, Motu 💫");
+}
+
+</script>
+
+</body>
+</html>
